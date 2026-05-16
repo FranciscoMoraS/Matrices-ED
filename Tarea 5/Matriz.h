@@ -85,9 +85,6 @@ public:
 		for (int j = 0; j < columns; j++) {
 			temp[rows][j] = value;
 		}
-		for (int i = 0; i < rows; i++) {
-			delete[]matriz[i];
-		}
 		delete[] matriz;
 		matriz = temp;
 		rows += 1;
@@ -111,13 +108,56 @@ public:
 		columns += 1;
 	}
 	void removeRow(int row) {
-		
+		if (row < 0 || row >= rows)
+			throw runtime_error("Fila invalida.");
+		E** temp = new E * [rows - 1];
+		for (int i = 0; i < row; i++) {
+			temp[i] = matriz[i];
+		}
+		delete matriz[row];
+		for (int i = row + 1; i < rows; i++) {
+			temp[i - 1] = matriz[i]; 
+		}
+		delete[] matriz;
+		matriz = temp;
+		rows--;
 	}
 	void removeColumn(int column) {
-
+		if (column < 0 || column >= columns)
+			throw runtime_error("Columns invalida.");
+		E** temp = new E * [rows];
+		for (int i = 0; i < rows; i++) {
+			temp[i] = new E[columns - 1];
+		}
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < col; j++) {
+				temp[i][j] = matriz[i][j];
+			}
+			for (int j = col + 1; j < columns; j++) {
+				temp[i][j - 1] = matriz[i][j];
+			}
+		}
+		for (int i = 0; i < rows; i++) {
+			delete[] matriz[i];
+		}
+		delete[] matriz;
+		matriz = temp;
+		columns--;
 	}
 	void print() {
-
+		for (int i = 0; i < rows; i++) {
+			cout << "[";
+			for (int j = 0; j < columns; j++) {
+				if (j != columns - 1) {
+					cout << matriz[i][j] << ", ";
+				}
+				else {
+					cout << matriz[i][j];
+				}
+				
+			}
+			cout << "]";
+		}
 	}
 };
 
