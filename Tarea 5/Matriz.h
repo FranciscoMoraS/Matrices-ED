@@ -53,7 +53,7 @@ public:
 	void setAll(E value) {
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				matriz[i][j]=value
+				matriz[i][j] = value;
 			}
 		}
 	}
@@ -130,10 +130,10 @@ public:
 			temp[i] = new E[columns - 1];
 		}
 		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < col; j++) {
+			for (int j = 0; j < column; j++) {
 				temp[i][j] = matriz[i][j];
 			}
-			for (int j = col + 1; j < columns; j++) {
+			for (int j = column + 1; j < columns; j++) {
 				temp[i][j - 1] = matriz[i][j];
 			}
 		}
@@ -156,7 +156,7 @@ public:
 				}
 				
 			}
-			cout << "]";
+			cout << "]"<<"\n";
 		}
 	}
 };
